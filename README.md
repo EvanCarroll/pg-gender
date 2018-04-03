@@ -55,6 +55,12 @@ Synopsis
 	SELECT gender.polar_male();   ## Male   = mk_gender(-1,-1,-1)
 	SELECT gender.polar_female(); ## Female = mk_gender( 1, 1, 1)
 
+
+	## Should return all gender-possibilities
+	SELECT gender
+	FROM table
+	WHERE gender BETWEEN gender.polar_male() AND gender.polar_female();
+
 Background
 ----
 
