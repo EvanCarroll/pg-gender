@@ -41,10 +41,10 @@ Synopsis
 
 	## Show the 3d gender (text-represetnation)
 	## And, the 2d-body, 2d-expression, and 2d-identity (text-representation)
-	SELECT gender,
-		gender.body(gender),
-		gender.expression(gender),
-		gender.identity(gender)
+	SELECT user_gender,
+		gender.body(user_gender),
+		gender.expression(user_gender),
+		gender.identity(user_gender)
 	FROM persons;
 
 	## Index it, and find those who identify in a similar fashion with KNN
@@ -55,11 +55,10 @@ Synopsis
 	SELECT gender.polar_male();   ## Male   = mk_gender(-1,-1,-1)
 	SELECT gender.polar_female(); ## Female = mk_gender( 1, 1, 1)
 
-
 	## Should return all gender-possibilities
-	SELECT gender
+	SELECT user_gender
 	FROM table
-	WHERE gender BETWEEN gender.polar_male() AND gender.polar_female();
+	WHERE user_gender BETWEEN gender.polar_male() AND gender.polar_female();
 
 Background
 ----
