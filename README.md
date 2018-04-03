@@ -33,29 +33,29 @@ represented the spectrum of each attribute. `0` represents known values.
 Synopsis
 ----
 
-	## Known to not identify with a gender
+	-- Known to not identify with a gender
 	SELECT gender.mk_gender(0,0,0);
 
-	## Unknown gender
+	-- Unknown gender
 	SELECT undef::gender;
 
-	## Show the 3d gender (text-represetnation)
-	## And, the 2d-body, 2d-expression, and 2d-identity (text-representation)
+	-- Show the 3d gender (text-represetnation)
+	-- And, the 2d-body, 2d-expression, and 2d-identity (text-representation)
 	SELECT user_gender,
 		gender.body(user_gender),
 		gender.expression(user_gender),
 		gender.identity(user_gender)
 	FROM persons;
 
-	## Index it, and find those who identify in a similar fashion with KNN
+	-- Index it, and find those who identify in a similar fashion with KNN
 	CREATE INDEX ON persons
 		USING gist (gender);
 
-	## You may want null::gender
-	SELECT gender.polar_male();   ## Male   = mk_gender(-1,-1,-1)
-	SELECT gender.polar_female(); ## Female = mk_gender( 1, 1, 1)
+	-- You may want null::gender
+	SELECT gender.polar_male();   -- Male   = mk_gender(-1,-1,-1)
+	SELECT gender.polar_female(); -- Female = mk_gender( 1, 1, 1)
 
-	## Should return all gender-possibilities
+	-- Should return all gender-possibilities
 	SELECT user_gender
 	FROM table
 	WHERE user_gender BETWEEN gender.polar_male() AND gender.polar_female();
